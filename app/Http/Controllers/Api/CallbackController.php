@@ -60,7 +60,7 @@ class CallbackController extends Controller
 
                 // got beaconevent
                 if ($event->getBeaconEventType() == 'enter') {
-                    $replyText = 'Enter Beacon';
+                    $replyText = '入室しました';
                     try{
                         $dynamo->putItem(array(
                             "TableName" => 'occupy',
@@ -74,7 +74,7 @@ class CallbackController extends Controller
                         return response()->json(['msg'=>$e->getAwsErrorMessage()], 500);
                     }
                 } else if ($event->getBeaconEventType() == 'leave') {
-                    $replyText = 'Leave Beacon';
+                    $replyText = '退出しました';
                     try {
                         $dynamo->deleteItem(array(
                             "TableName" => 'occupy',
